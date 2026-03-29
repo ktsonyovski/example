@@ -6,3 +6,8 @@ app = FastAPI(
     description="User management API for examples",
     summary="User management API for creating and deleting users in a SQLite database"
 )
+
+@app.get("/")
+def root():
+    """Root function"""
+    return "Hello World"
