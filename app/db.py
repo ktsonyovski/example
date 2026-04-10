@@ -1,14 +1,22 @@
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, Table, Column, MetaData, String
 
 engine = create_engine('sqlite:///database.db', echo=True)
+meta = MetaData()
+connection = engine.connect()
 
-# connection
-conn = engine.connect()
-conn.execute(text("CREATE TABLE IF NOT EXISTS users (username string, password string)"))
-conn.commit()
+users_table = Table(
+    "users",
+    meta,
+    Column("username", String, nullable=False),
+    Column("password", String, nullable=False)
+)
 
-# sessions
-session = Session(engine)
-session.execute(text("INSERT INTO users (username, password) VALUES ('admin', 'root');"))
-session.commit()
+def create_user(username: str, password: str) -> None:
+    add_user = users_table.insert().values(username=username, password=password)
+    connection.execute(add_user)
+    connection.commit()
+
+def delete_user(username: str) -> None:
+    del_user = users_table.delete().where(users_table.c.username == username)
+    connection.execute(del_user)
+    connection.commit()

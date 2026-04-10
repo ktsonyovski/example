@@ -1,6 +1,8 @@
 """Main source code for FastAPI user management"""
 from fastapi import FastAPI
+
 from app.schemas import CreateUser
+from app.db import create_user, delete_user
 
 app = FastAPI(
     title="User Management API",
@@ -8,18 +10,12 @@ app = FastAPI(
     summary="User management API for creating and deleting users in a SQLite database"
 )
 
-users = {
-    1 : {"username" : "root", "password" : "root"}
-}
-
-@app.get("/users")
-def users_list():
-    """Show users list"""
-    return users
-
-@app.post(f"/users")
-def create_user(user: CreateUser):
+@app.post(f"/api/create_user")
+def post_user(user: CreateUser):
     """Create user"""
-    add_user = {"username": user.username, "password": user.password}
-    users[max(users.keys()) + 1] = add_user
-    return add_user
+    create_user(username=user.username, password=user.password)
+
+@app.delete(f"/api/delete_user")
+def del_user(username: str):
+    """Delete user"""
+    delete_user(username=username)

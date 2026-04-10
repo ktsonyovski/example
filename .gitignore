@@ -4,3 +4,4 @@ __pycache__/
 plan.md
 .env
 *.ipynb
+*.db
