@@ -5,3 +5,4 @@ plan.md
 .env
 *.ipynb
 *.db
+.vscode/launch.json
