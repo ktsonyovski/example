@@ -1,0 +1,10 @@
+{
+    "resources" : {
+        "water" : 5000,
+        "coffee" : 3000,
+        "milk" : 2000,
+        "dimes" : 100,
+        "quarters" : 100,
+        "nickels" : 100
+    }
+}
