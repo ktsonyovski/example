@@ -2,19 +2,21 @@
     "espresso" : {
         "water" : 50,
         "coffee" : 18,
-        "milk" : 0,
-        "cost" : 1.5
+        "milk" : 0
     },
     "latte" : {
         "water" : 200,
         "coffee" : 24,
-        "milk" : 150,
-        "cost" : 2.5
+        "milk" : 150
     },
     "cappuccino" : {
         "water" : 250,
         "coffee" : 24,
-        "milk" : 100,
-        "cost" : 3.0
+        "milk" : 100
+    },
+    "costs" : {
+        "espresso" : 1.5,
+        "latte" : 2.5,
+        "cappuccino" : 3.0
     }
 }
